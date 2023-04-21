@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <style>
+        body{
+            font-size:9pt;
+            font-family: sans-serif;
+        }
+        ul>li{
+            list-style: none;
+            border:1px #ddd solid;
+            margin:10px;
+            padding:10px;
+            width:50%;
+        }
+        ul li.select{
+            background-color: bisque;
+        }
+    </style>
+    <script>
+/*
+	엘리먼트 생성시: $() jQuery함수에 생성할 요소를 문자열로 준다.
+	엘리먼트를 붙일 때는
+	 -[1]  선택자.append("새로생성된요소"):
+		  	문자열을 특정 요소 뒤에 덧붙인다.
+	  [2]  $("새로생성된요소").appendTo('선택자')	 
+		 
+	 -[3] prepend(): 문자열을 특정 요소 앞에 덧붙인다.
+	  [4] prependTo()
+	  
+	  [5] before()
+	  [6] insertBefore()
+	  
+	  [7] after();
+	  [8] insertAfter()
+*/
+            $(()=>{
+                $('#btnAdd').click(()=>{
+                    // $('ul.menu').append('<li>New menu</li>');
+                    $('<li>New menu</li>').appendTo('ul.menu');
+                })
+                let cnt =0;
+                 // prepend()이용해서 새메뉴 앞에 붙이기
+                 $('#btnAdd2').click(()=>{
+                    // $('ul.menu').prepend('<li>New memu'+ ++cnt +'</li>')
+                    $('<li>new name'+ ++cnt +'</li>').prependTo('ul.menu');
+                 })
+                 //[문제1]클래스가 select인 요소 앞에 새로운 메뉴를 추가하세요.
+                $('#btnAdd3').click(()=>{
+                    // $('.select').before('<li>select before</li>');
+                    $('<li>select before</li>').insertBefore('.select');
+                    
+                 })
+                //[문제2]클래스가 select인 요소 뒤에 새로운 메뉴 추가
+                $('#btnAdd4').click(()=>{ 
+                    // $('.select').after('<li>select after</li>');
+                    $('<li>select after</li>').insertAfter('.select');
+                })
+
+            }) // $() end -----------
+    </script>
+</head>
+<body>
+    <h1>DOM - Document Object Model</h1>
+    <button id="btnAdd">추가(append)</button>
+	<button id="btnAdd2">추가2(prepend)</button>
+	<button id="btnAdd3">추가3(before)</button>
+	<button id="btnAdd4">추가4(after)</button>
+	<ul class="menu">
+		<li>menu1</li>
+		<li>menu2</li>
+		<li class="select">menu3</li>
+		<li>menu4</li>
+		<li>menu5</li>
+	</ul>
+</body>
+</html>
+<!-- ex09_dom생성.html -->
