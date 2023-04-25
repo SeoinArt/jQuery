@@ -9,27 +9,42 @@
 <!-- ------------------------------------------------------- -->
 
 <script type="text/javascript">
-	  $(()=>{
-		//prepend버튼을 누르면 img요소 중 마지막 요소를 찾아서 #panel에 prepend
-		$('#prepend').click(()=>{
-			$('#panel').prepend($('img:last'));
-			
-		})
-		$('#append').click(()=>{
-			$('#panel').append($('img:first'));
-		})
+	
+		//prepend버튼을 누르면 img요소 중 마지막 요소를 
+		//찾아서 #panel에 prepend
+		$(()=>{
+			$('button#prepend').click(()=>{
+				$('div#panel').prepend($("div#panel img:last"));
+			})
+			$('button#append').click(()=>{
+				$('div#panel').append($("div#panel img:first"));
+			})
+
+
+		
 		//#auto를 클릭하면 2초 간격으로 이미지를 (append|prepend)되도록 하세요
 		//=> setInterval(함수,밀리세컨드)  활용
-		
+		let moving=null;
+
 		$('#auto').click(()=>{
-			inval = setInterval(()=>{
-				$('#panel').append($('img:first'));
-			},2000);
-		})
-		$('#stop').click(()=>{
-			clearInterval(inval);
-		})
-	  })
+			if(moving==null){
+				moving = setInterval(()=>{
+					$('#panel').append($('img:first'));
+				},2000);
+
+			}
+        })
+        $('#stop').click(()=>{
+			if(moving!=null){
+            	clearInterval(moving);
+				moving=null;
+			}
+        })
+    })			
+								
+							
+			
+	
 		
 	
 	
@@ -39,11 +54,11 @@
 <h1>jQuery를 이용한 이미지 순환</h1>
 <h2>append(), prepend()활용</h2>
 <div id="panel" align="center">
-	<img src="./images/a.png" width="200px" height="200px">
-	<img src="./images/b.png" width="200px" height="200px">
-	<img src="./images/c.png" width="200px" height="200px">
-	<img src="./images/d.png" width="200px" height="200px">
-	<img src="./images/e.png" width="200px" height="200px">
+	<img src="./images/a.PNG" width="200px" height="300px">
+	<img src="./images/b.PNG" width="200px" height="300px">
+	<img src="./images/c.PNG" width="200px" height="300px">
+	<img src="./images/d.PNG" width="200px" height="300px">
+	<img src="./images/e.PNG" width="200px" height="300px">
 </div>
 <p>
 <div align="center">

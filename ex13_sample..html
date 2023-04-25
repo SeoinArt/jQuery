@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex13_sample.html</title>
+    <style>
+        #panel{
+            width:850px;
+            height:420px;
+            border:3px solid #ddd;
+            margin:auto
+        }
+        #navi{
+            width:850px;
+            text-align:center;
+            
+            margin:auto;
+
+        }
+        button{
+            margin-top: 8px;
+            padding:8px;
+        }
+    </style>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        let car =null;
+        let index = 0;
+        let moving=null;
+        $(()=>{
+            
+        car = "./images/";
+            $('#prev').on("click",()=>{
+                if((index--)>1){
+                    $('#panel img').attr("src",car+(index)+".jpg")
+                    console.log('index '+index);
+                }
+                else index = 61;
+            }) 
+            
+            
+            
+            $('#next').on("click",next=function(){
+                if((index++)<60){
+                    $('#panel img').attr("src",car+(index)+".jpg")
+                    console.log('index '+index);
+                }
+                else index =0;
+            }) 
+
+            $('#play').click(()=>{
+                if(moving==null){
+                    moving = setInterval(()=>{next(),1000});
+                }
+            })
+
+            $('#stop').click(()=>{
+			if(moving!=null){
+            	clearInterval(moving);
+				moving=null;
+			}
+          
+        })
+
+
+
+        })//$() end
+    </script>
+</head>
+<body>
+    <div id="panel">
+        <img src="./images/1.jpg" alt="error">
+    </div>
+    <div id="navi">
+        <button id="play">play</button>
+        <button id="stop">stop</button>
+        <button id="prev">prev</button>
+        <button id="next">next</button>
+    </div>
+</body>
+</html>
